@@ -16,4 +16,4 @@ export const towerDefinitions = {
             "fac": 1.8
         }
     }
-}
+} 
