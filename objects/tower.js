@@ -1,5 +1,5 @@
 import { global } from "../main";
-import { Bullet } from "./bullet";
+import { Bullet } from "./Bullet";
 
 export class Tower{
     constructor(pos, definition, main){

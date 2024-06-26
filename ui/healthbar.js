@@ -7,7 +7,6 @@ export class healthBar{
         this.width = width;
         this.height = height;
         this.maxHealth = maxHealth;
-        global.ui.healthBar=this;
     }
 
     draw(health){

@@ -1,7 +1,12 @@
+import level1 from '/images/maps/level1.png';
+import mask1 from '/images/maps/level1mask.png';
+
 export  const levelDefinitions = {
     level1: {
         name: 'Level 1',
         reward: 1000,
+        background: level1,
+        mask: mask1,
         path1: 
             [
                 {
@@ -71,55 +76,25 @@ export  const levelDefinitions = {
 
         waves: [
             {
-                path1: [
-                    { enemy: 'zombie', count: 10, interval: 1000 }
-                ],
-                path2: [
-                    
-                ]
+                path1:{
+                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
+                delay: 1000,
+                },
+
+                path2: null,
             },
+
             {
-                path1: [
-                    
-                ],
-                path2: [
-                    { enemy: 'zombie', count: 10, interval: 800 }
-                ]
+                path1:{
+                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
+                delay: 1000,
+                },
+
+                path2: {
+                    enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
+                    delay: 1000,
+                    },
             },
-            {
-                path1: [
-                    { enemy: 'zombie', count: 10, interval: 800 }
-                ],
-                path2: [
-                    { enemy: 'zombie', count: 5, interval: 500 }
-                ]
-            },
-            {
-                path1: [
-                    { enemy: 'bigZombie', count: 1, interval: 1000 }
-                ],
-                path2: [
-                    { enemy: 'zombie', count: 10, interval: 800}
-                ]
-            },
-            {
-                path1: [
-                    { enemy: 'zombie', count: 10, interval: 500 },
-                    { enemy: 'bigZombie', count: 1, interval: 1000}
-                ],
-                path2: [
-                    { enemy: 'zombie', count: 10, interval: 500 },
-                    { enemy: 'bigZombie', count: 1, interval: 1000 }
-                ]
-            },
-            {
-                path1: [
-                    { enemy: 'zombie', count: 20, interval: 200 }
-                ],
-                path2: [
-                    { enemy: 'zombie', count: 20, interval: 200 }
-                ]
-            }
-        ]
-    }
+        ],
+    },
 }
