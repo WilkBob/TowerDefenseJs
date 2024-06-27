@@ -1,0 +1,26 @@
+name: Deploy Game
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Or your preferred runner
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout code from repository
+      - uses: actions/setup-node@v3  # Set up Node.js environment
+        with:
+          node-version: '18'  # Adjust Node.js version if needed
+
+      - uses: bahmutov/npm-install@v1  # Install dependencies
+
+      - name: Build Vite app
+        run: npm run build  # Assuming your build command is `npm run build`
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # Deploy to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Path to your built production files
