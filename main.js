@@ -1,11 +1,11 @@
 import '/style.css'
 
 
-import { levelDefinitions } from './definitions/levels';
-import { enemyDefinitions } from './definitions/enemies';
-import { towerDefinitions } from './definitions/towers';
-import { playerDefinition } from './definitions/newplayer';
-import { Game } from './objects/Game';
+import { levelDefinitions } from './src/definitions/levels';
+import { enemyDefinitions } from './src/definitions/enemies';
+import { towerDefinitions } from './src/definitions/towers';
+import { playerDefinition } from './src/definitions/newplayer';
+import { Game } from './src/objects/Game';
 
 
 const canvas = document.createElement('canvas');
@@ -30,6 +30,7 @@ export const global = {
     radius:10,
     color: 'rgba(255,255,255,0.5)',
     down: false,
+    canPlace: false
   },
   levelDefinitions,
   enemyDefinitions,
@@ -55,11 +56,15 @@ global.canvas.addEventListener('mousemove', (e) => {
 
 global.canvas.addEventListener('mousedown', (e) => {
   global.mouse.down = true;
-  console.log(global.mouse.down);
-});
+}
+);
 
 global.canvas.addEventListener('mouseup', (e) => {
   global.mouse.down = false;
+});
+
+global.canvas.addEventListener('click', (e) => {
+  global.game.click(global.mouse.x, global.mouse.y);
 });
 
 window.addEventListener('resize', resize);
@@ -71,9 +76,44 @@ function resize(){
   global.canvas.height = size;
   global.size = size;
   global.fac = size / global.baseSize;
+  document.documentElement.style.setProperty('--canvas-fac', global.fac);
+  document.documentElement.style.setProperty('--canvas-size', global.size + 'px');
 
+  if(global.game){
+    global.game.clickmask.resize();
+  }
 }
 
+
+let path = 1;
+window.addEventListener('keydown', (e) => {
+  if(e.key === '1'){
+    path = 1;
+    global.game.addMessage(`Path ${path}`, 'Game');
+  }
+  if(e.key === '2'){
+    path = 2;
+    global.game.addMessage(`Path ${path}`, 'Game');
+  }
+  if(e.key === 'm'){
+    global.game.player.addMoney(100);
+  }
+  if(e.key === 'l'){
+    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'zombie');
+  }
+  if(e.key === 'k'){
+    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'bigZombie');
+  }
+  if(e.key === 'j'){
+    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'roller');
+  }
+});
+
+
+setInterval(() => {
+  global.fps.fps = global.fps.frames;
+  global.fps.frames = 0;
+}, 1000);
 
 
 
@@ -85,8 +125,11 @@ function startGame(){
 
 function loop(){
   global.ctx.clearRect(0,0,global.canvas.width,global.canvas.height);
-  global.game.update();
   global.game.draw();
+  global.game.update();
+  global.game.ui.drawMouse();
+  
+  global.fps.frames++;
   return requestAnimationFrame(loop);
 }
 

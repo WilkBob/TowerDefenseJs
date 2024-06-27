@@ -1,12 +1,13 @@
 
-import {addMessage, global, killEnemy} from '../main.js';
+import { global } from '../../main.js';
+import { SpriteSheet } from './SpriteSheet.js';
 
 export class Enemy{
-    constructor(path, definition, ctx){
+    constructor(path, definition){
         this.path = path;
         this.pathIndex = 0;
         this.definition = definition;
-        this.ctx = ctx;
+        this.ctx = global.ctx;
         this.x = path[0].x;
         this.y = path[0].y;
         this.rotation = 0;
@@ -26,6 +27,7 @@ export class Enemy{
         this.image.src = this.animation.src;
         this.player = global.game.player;
         this.loaded = false;
+        this.paused = false;
         this.animInterval = setInterval(() => {
             this.frame = (this.frame + 1)
             if(this.frame >= this.animation.frames){
@@ -40,7 +42,7 @@ export class Enemy{
         
 
 
-        addMessage(this.currentMessage, this.definition.name);
+        global.game.addMessage(this.currentMessage, this.definition.name);
     }
 
     drawHealthBar(){
@@ -106,9 +108,10 @@ export class Enemy{
     update(){
         if(this.dead || this.health <= 0){
             console.log(this.player.money, this.reward);
-            addMessage(`dropped ${this.reward} coins`, this.definition.name);
             this.player.money += this.reward;
-            killEnemy(this);
+            this.clearIntervals();
+            global.game.objects.enemies = global.game.objects.enemies.filter(enemy => enemy !== this);
+            global.game.objects.spritesheets.push(new SpriteSheet(this.deathAnimation.src, this.deathAnimation.size, this.deathAnimation.frames, {x: this.x, y: this.y, rotation: this.rotation}, this.deathAnimation.fac));
             return;
         }
         const target = this.path[this.pathIndex];
@@ -122,19 +125,16 @@ export class Enemy{
             this.y = target.y;
             this.pathIndex++;
             if(this.pathIndex >= this.path.length){
-                this.dead = true;
                 this.currentMessage = this.messages.hitTower[Math.floor(Math.random() * this.messages.hitTower.length)];
                 this.player.health -= this.definition.damage
-                console.log(`Player health: ${this.player.health}`);
-                console.log(`Damage: ${this.definition.damage}`);
-                addMessage(this.currentMessage, this.definition.name);
+                global.game.addMessage(this.currentMessage, this.definition.name);
+                this.dead = true;
                 if(this.player.health <= 0){
-                    console.log('Player dead');
-                    addMessage('Player dead', 'game');
-                    global.game.init();
+                    global.game.addMessage('Player dead', 'game');
+                    global.game.gameOver();
                     return;
                 }
-                killEnemy(this);
+                global.game.objects.enemies = global.game.objects.enemies.filter(enemy => enemy !== this);
                 return;
             }
         }else{

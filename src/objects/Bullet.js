@@ -1,4 +1,4 @@
-import { addMessage, global } from '../main';
+import { global } from '../../main.js';
 
 export class Bullet {
     constructor(ctx, tower, target) {
@@ -15,14 +15,19 @@ export class Bullet {
 
 
     update() {
+        
+        if (!this.target || this.target.dead || this.target.health <= 0) {
+            this.toRemove = true;
+            this.target = null;
+            return;
+        }
         if (this.toRemove) return;
-
         const dx = this.target.x - this.x;
         const dy = this.target.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < this.speed) {
-            addMessage(this.target.definition.messages.hit[Math.floor(Math.random() * this.target.definition.messages.hit.length)], this.target.definition.name);
+            global.game.addMessage(this.target.definition.messages.hit[Math.floor(Math.random() * this.target.definition.messages.hit.length)], this.target.definition.name);
             this.target.health -= this.damage;
             this.toRemove = true;
         } else {

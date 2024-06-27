@@ -1,4 +1,4 @@
-import { global } from "../main";
+import { global } from "../../main.js";
 import { Bullet } from "./Bullet";
 
 export class Tower{
@@ -21,6 +21,7 @@ export class Tower{
         this.image.onload = () => {
             this.loaded = true;
         };
+        this.isMouseOver = false;
 
         // Store interval IDs
         this.frameInterval = setInterval(() => {
@@ -31,10 +32,12 @@ export class Tower{
         }, 1000/this.definition.spritesheet.frames);
 
         this.shootInterval = setInterval(() => {
-            if(this.target){
+            if(this.target && global.game.loaded &&!global.game.paused){
                 this.shoot();
             }
         }, this.fireRate);
+        this.shoot();
+
     }
 
     shoot(){
@@ -81,27 +84,64 @@ export class Tower{
         this.ctx.restore();
     }
 
-    update(){
-        if(this.target){
-            const dx = this.target.x - this.x;
-            const dy = this.target.y - this.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            this.rotation = Math.atan2(dy, dx) - Math.PI / 2;
-            if(distance > this.range * global.fac || this.target.dead || this.target.health <= 0){
-                this.target = null;
-            }
-        }else{
-            if(this.main.objects.enemies.length === 0){
-                return;
-            }
-            this.target = this.main.objects.enemies.find(enemy => {
-                const dx = enemy.x - this.x;
-                const dy = enemy.y - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                return distance < this.range;
-            });
-        }
+    checkMouseOver(){
+        const x = global.mouse.x * global.size;
+        const y = global.mouse.y * global.size;
+        const dx = x - this.x * global.size;
+        const dy = y - this.y * global.size;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        this.isMouseOver = distance < this.size * global.fac;
     }
+ findFirstEnemyWithinRange(tower, enemies) {
+    return enemies.find(enemy => {
+        const dx = enemy.x - tower.x;
+        const dy = enemy.y - tower.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        return distance < tower.range;
+    });
+}
+
+
+
+    findClosestEnemyWithinRange(tower, enemies) {
+    let closestEnemy = null;
+    let shortestDistance = Infinity;
+
+    enemies.forEach(enemy => {
+        const dx = enemy.x - tower.x;
+        const dy = enemy.y - tower.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < tower.range && distance < shortestDistance) {
+            closestEnemy = enemy;
+            shortestDistance = distance;
+        }
+    });
+
+    return closestEnemy;
+}
+
+
+   update() {
+    this.checkMouseOver();
+
+    if (this.target) {
+        const dx = this.target.x - this.x;
+        const dy = this.target.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        this.rotation = Math.atan2(dy, dx) - Math.PI / 2;
+        if (distance > this.range * global.fac || this.target.dead || this.target.health <= 0) {
+            this.target = null;
+        }
+    } else {
+        if (this.main.objects.enemies.length === 0) {
+            return;
+        }
+        // Choose the target-finding method here
+        this.target = this.findFirstEnemyWithinRange(this, this.main.objects.enemies);
+        // this.target = this.findClosestEnemyWithinRange(this, this.main.objects.enemies);
+    }
+}
 
     // Method to clear intervals
     clearIntervals() {

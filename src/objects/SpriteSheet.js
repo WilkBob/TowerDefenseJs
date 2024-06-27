@@ -1,4 +1,4 @@
-import { global } from "../main";
+import { global } from "../../main.js";
 export class SpriteSheet{
     constructor(src, size, frames, pos, animationFac){
         this.x = pos.x;
@@ -16,7 +16,7 @@ export class SpriteSheet{
         }
         setInterval(() => {
             this.frame = (this.frame + 1)
-        }, 500/this.frames);
+        }, 1000/this.frames);
 
     }
 

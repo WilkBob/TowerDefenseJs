@@ -1,14 +1,16 @@
 import zombie from '/images/sprites/zombie.png';
 import zombieDeath from '/images/sprites/zombieDeath.png';
+import roller from '/images/sprites/roller.png';
+import rollerDeath from '/images/sprites/rollerDeath.png';
 
 export const enemyDefinitions = {
     zombie: {
         name: 'Zombie',
         key: 'zombie',
-        health: 30,
+        health: 45,
         damage: 10,
         speed: 2,
-        reward: 30,
+        reward: 40,
         size: 128,
         spritesheet: {
             src: '/images/sprites/zombie.png',
@@ -71,5 +73,39 @@ export const enemyDefinitions = {
             taunt: ['You next... yummy brains...', 'Die living ones...', '(Reaching out)* "Come closer..."'],
             hitTower: ['CRUSH', `OBLITERATE`, `DESTROY`]
           }
+    },
+
+    roller: {
+        name: 'Roller',
+        key: 'roller',
+        health: 100,
+        damage: 50,
+        speed: 3,
+        reward: 150,
+        size: 128,
+        spritesheet: {
+            src: '/images/sprites/roller.png',
+            image: roller,
+            size: 128,
+            frames: 24,
+            fac: 0.6
+        },
+
+        animations: {
+            death: {
+                src: '/images/sprites/rollerDeath.png',
+                image: rollerDeath,
+                size: 128,
+                frames: 24,
+                fac: 0.6
+            }
+        },
+
+        messages: {
+            death: [`thud...`, 'ugh... *BOOM*', ],
+            hit: ['clink', 'clang', 'crash'],
+            spawn: ['*rolling noises*', 'Rolling in...', '*ominous rolling*'],
+            hitTower: ['*BOOM*', '*CRASH*', '*CRUNCH*']
+        }
     }
 }

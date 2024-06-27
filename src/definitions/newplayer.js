@@ -1,7 +1,7 @@
 export const playerDefinition ={
     name: 'Player',
     health: 100,
-    money: 450,
+    money: 600,
     score: 0,
     progress: {
         wave: 1,

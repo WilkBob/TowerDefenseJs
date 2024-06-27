@@ -6,6 +6,7 @@ export class Player{
         this.maxHealth = playerDefinition.health;
         this.health = playerDefinition.health;
         this.money = playerDefinition.money;
+        this.startingMoney = playerDefinition.money;
         this.score = playerDefinition.score;
         this.progress = playerDefinition.progress;
         //{wave: int, level: int, highscore: int}
@@ -16,8 +17,6 @@ export class Player{
             const def = {
                 name: this.name,
                 health: this.maxHealth,
-                money: this.money,
-                score: this.score,
                 progress: this.progress
             }
             window.localStorage.setItem('player', JSON.stringify(def));
@@ -27,8 +26,13 @@ export class Player{
             const def = JSON.parse(window.localStorage.getItem('player'));
             if(!def) return;
             this.name = def.name;
-            this.health = def.health;
-            this.money = def.money;
+            if(this.name === 'Player' || this.name === 'player'){
+                this.name = prompt('Enter your name');
+                if(!this.name){
+                    this.name = 'Player';
+                }
+                this.save();
+            }
             this.score = def.score;
             this.progress = def.progress;
         }
@@ -64,5 +68,6 @@ export class Player{
             this.progress.level = level;
             this.progress.highscore = highscore;
         }
+        
 
 }
