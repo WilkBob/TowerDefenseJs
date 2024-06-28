@@ -4,6 +4,7 @@ import { Clickmask } from "./Clickmask";
 import { Enemy } from "./Enemy";
 import { Player } from "./Player";
 import { Tower } from "./tower";
+import Splash from '@images/splash.png';
 export class Game{
     constructor(){
         this.objects = {
@@ -22,7 +23,7 @@ export class Game{
         this.level = global.levelDefinitions.level1;
 
         this.background = new Image();
-        this.background.src = '/images/splash.png'
+        this.background.src = Splash
         this.background.onload = () => {
             this.loaded = true;
             this.addMessage('Level loaded', 'Game');
