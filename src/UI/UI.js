@@ -4,6 +4,8 @@ import { Messages } from "./Messages.js";
 import { StartMenu } from "./StartMenu.js";
 import { healthBar } from "./healthbar.js";
 import { createPauseButton, createTowerSelector } from "./utils.js";
+import { LevelSelectScreen } from "./LevelSelect.js";
+import { PauseMenu } from "./PauseMenu.js";
 
 
 export class UI{
@@ -26,9 +28,13 @@ export class UI{
         this.pauseButton.addEventListener('click', () => {
             global.game.pause();
         });
+
+        this.pauseMenu = new PauseMenu();
     
         this.towerSelector = createTowerSelector();
         document.body.appendChild(this.towerSelector);
+
+        this.levelSelectScreen = new LevelSelectScreen();
         // Ensure global.playerDefinition and its health property are defined
     
         this.healthBar = new healthBar(10, 10, 200, 20, global.playerDefinition.health);
@@ -42,14 +48,24 @@ export class UI{
         this.view.messages = true;
         this.state.health = 0;
         this.pauseButton.style.display = 'block';
-        this.towerSelector.style.display = 'block';
+        this.towerSelector.style.display = 'flex';
+    }
+
+    levelSelect(){
+        this.startMenu.hide();
+        this.view.hud = false;
+        this.view.messages = false;
+        this.pauseButton.style.display = 'none';
+        this.towerSelector.style.display = 'none';
+        this.levelSelectScreen.show();
+
     }
 
     pause(){
         this.view.hud = false;
         this.view.messages = false;
         this.pauseButton.style.display = 'none';
-        this.startMenu.StartMenu.style.display = 'flex';
+        this.pauseMenu.show();
         this.towerSelector.style.display = 'none';
     }
 
@@ -57,15 +73,15 @@ export class UI{
         this.view.hud = true;
         this.view.messages = true;
         this.pauseButton.style.display = 'block';
-        this.startMenu.StartMenu.style.display = 'none';
-        this.towerSelector.style.display = 'block';
+        this.pauseMenu.hide();
+        this.towerSelector.style.display = 'flex';
     }
 
     gameOver(){
         this.view.hud = false;
         this.view.messages = true;
         this.pauseButton.style.display = 'none';
-        this.startMenu.StartMenu.style.display = 'flex';
+        this.startMenu.show();
         this.towerSelector.style.display = 'none';
     }
 
@@ -136,7 +152,7 @@ drawFps(){
         
         if(this.view.hud){
             
-            global.ctx.fillText(`Money: ${this.state.money}`, 10 * global.fac, 60 * global.fac);
+            global.ctx.fillText(`$${this.state.money}`, 10 * global.fac, 60 * global.fac);
             this.healthBar.draw(this.state.health);
     }
     if(this.view.messages){

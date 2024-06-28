@@ -97,28 +97,33 @@ box-shadow: 0 0 200px rgba(0, 0, 0, 0.411), 0 0 10px rgba(7, 7, 7, 0.726);
 }
 
 #towerSelector{
-  display: flex;
+  display: none; /* Make sure it's visible */
+  flex-direction: row; /* Items aligned horizontally */
+  flex-wrap: nowrap;
   justify-content: center;
   position: absolute;
   z-index: 2;
-    top: calc(50vh - (var(--canvas-size) / 2) + (60px * var(--canvas-factor)));
-    left: calc(50vw + (var(--canvas-size) / 2) - (150px * var(--canvas-factor)));
+  top: calc(50vh - (var(--canvas-size) / 2) + 10px);
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  width: calc(); /* Adjust based on your design */
+
   border: none;
   border-radius: 5px;
   color: white;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  display: none;
 }
 
 .towerCard {
+  max-width: 50%;
   color: #fff;
   display: flex;
-  flex-direction: column;
+ gap: calc(10px * var(--canvas-factor));
   align-items: center;
    /* Adjust based on your design */
-
+height: fit-content;
   margin: calc(10px * var(--canvas-factor));
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -135,7 +140,7 @@ box-shadow: 0 0 200px rgba(0, 0, 0, 0.411), 0 0 10px rgba(7, 7, 7, 0.726);
 
 .towerCard p{
   margin: 0;
-  padding: none;
+  padding: calc(8px * var(--canvas-factor));
   width: 100%;
   text-align: center;
   border-radius: 8px 8px 0 0;
@@ -143,7 +148,64 @@ box-shadow: 0 0 200px rgba(0, 0, 0, 0.411), 0 0 10px rgba(7, 7, 7, 0.726);
 }
 
 .towerIcon {
-  width: calc(80px * var(--canvas-factor)); /* Adjust based on your design */
-  height:calc(80px * var(--canvas-factor)); /* Adjust to maintain aspect ratio */
+  width: calc(50px * var(--canvas-factor)); /* Adjust based on your design */
+  height:calc(50px * var(--canvas-factor)); /* Adjust to maintain aspect ratio */
   object-fit: contain; /* Keeps the image aspect ratio */
+}
+
+#levelSelectScreen {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: start;
+  gap: calc(10px * var(--canvas-factor));
+  width: var(--canvas-size);
+  height: var(--canvas-size);
+  padding: calc(10px * var(--canvas-factor));
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  z-index: 10;
+}
+
+#levelSelectScreen .backButton {
+  grid-column: span 4;
+  padding: calc(10px * var(--canvas-factor));
+  border: none;
+  border-radius: 5px;
+  background: var(--green);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  max-height: calc(40px * var(--canvas-factor));
+}
+
+.levelCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+height: fit-content;
+  padding: calc(10px * var(--canvas-factor));
+  font-size: calc(1.5rem * var(--canvas-factor));
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f95d;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s
+
+}
+
+.levelCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.levelCard p {
+  font-size: 1.2rem;
+  font-weight: bold;
 }

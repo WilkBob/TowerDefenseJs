@@ -7,6 +7,7 @@ export const createUIContainer = function() {
     return UIContainer;
 }
 
+
 export const createStartMenu = function() {
     const startMenu = document.createElement('div');
     const title = createTitle();
@@ -22,6 +23,13 @@ export const createStartButton = function() {
     return startButton;
 }
 
+export const createLevelSelectButton = function() {
+    const levelSelectButton = document.createElement('button');
+    levelSelectButton.id = 'levelSelectButton';
+    levelSelectButton.textContent = 'Select Level';
+    return levelSelectButton;
+}
+
 const createTitle = function() {
     const title = document.createElement('h1');
     title.id = 'title';
@@ -35,6 +43,8 @@ export const createPauseButton = function() {
     pauseButton.textContent = 'Pause Game';
     return pauseButton;
 }
+
+
 
 export const createTowerSelector = function() {
     const towerSelector = document.createElement('div');
@@ -76,4 +86,43 @@ export const createTowerSelector = function() {
         towerSelector.appendChild(towerCard);
     });
     return towerSelector;
+}
+
+
+export const createLevelSelectScreen = function() {
+    const levelSelectScreen = document.createElement('div');
+    levelSelectScreen.id = 'levelSelectScreen';
+    const backButton = createLevelSelectBackButton();
+    levelSelectScreen.appendChild(backButton);
+    Object.values(global.levelDefinitions).forEach(level => {
+        const levelCard = createLevelCard(level);
+        levelSelectScreen.appendChild(levelCard);
+    });
+    
+    return levelSelectScreen;
+}
+
+
+const createLevelCard = function(level) {
+    const levelCard = document.createElement('div');
+    levelCard.classList.add('levelCard');
+    levelCard.id = level.name;
+    const levelName = document.createElement('p');
+    levelName.textContent = level.name;
+    levelCard.appendChild(levelName);
+    levelCard.addEventListener('click', () => {
+        global.game.loadLevel(level.key);
+    });
+    return levelCard;
+}
+
+const createLevelSelectBackButton = function() {
+    const backButton = document.createElement('button');
+    backButton.className = 'backButton';
+    backButton.textContent = 'Back';
+    backButton.addEventListener('click', () => {
+        global.game.ui.startMenu.show();
+        global.game.ui.levelSelectScreen.hide();
+    });
+    return backButton;
 }

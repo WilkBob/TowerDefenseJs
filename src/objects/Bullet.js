@@ -9,7 +9,7 @@ export class Bullet {
         this.target = target;
         this.speed = 0.05 * global.fac;
         this.damage = tower.damage;
-        this.sizeFactor = 10 * global.fac;
+        this.sizeFactor = 8 * global.fac;
         this.toRemove = false; // Flag to mark bullet for removal
     }
 
@@ -40,7 +40,7 @@ export class Bullet {
     draw() {
         if (this.toRemove) return;
 
-        this.ctx.fillStyle = 'red';
+        this.ctx.fillStyle = '#111';
         this.ctx.beginPath();
         this.ctx.arc(this.x * global.size, this.y * global.size, this.sizeFactor, 0, Math.PI * 2);
         this.ctx.fill();
