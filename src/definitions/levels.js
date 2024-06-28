@@ -1,5 +1,5 @@
-import level1 from '@images/maps/level1.png';
-import mask1 from '@images/maps/level1mask.png';
+import level1 from '/images/maps/level1.png';
+import mask1 from '/images/maps/level1mask.png';
 
 export  const levelDefinitions = {
     level1: {

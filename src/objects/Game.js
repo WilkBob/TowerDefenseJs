@@ -4,7 +4,7 @@ import { Clickmask } from "./Clickmask";
 import { Enemy } from "./Enemy";
 import { Player } from "./Player";
 import { Tower } from "./tower";
-import Splash from '@images/splash.png';
+import Splash from '/images/splash.png';
 export class Game{
     constructor(){
         this.objects = {
