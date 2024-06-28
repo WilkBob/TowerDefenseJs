@@ -22,7 +22,7 @@ export class Game{
         this.level = global.levelDefinitions.level1;
 
         this.background = new Image();
-        this.background.src = '@images/splash.png'
+        this.background.src = '/images/splash.png'
         this.background.onload = () => {
             this.loaded = true;
             this.addMessage('Level loaded', 'Game');
