@@ -180,7 +180,7 @@ export class Game{
         this.player.save();
         this.player.health = this.player.maxHealth;
         this.player.money = this.player.startingMoney;
-        this.loadBackground('@images/splash.png');
+        this.loadBackground(Splash);
         this.addMessage('Game over', 'Game');
     }
 
