@@ -7,7 +7,7 @@ export class StartMenu{
         this.StartMenu.appendChild(this.StartButton);
         this.StartButton.addEventListener('click', () => {
             this.StartMenu.style.display = 'none';
-            global.game.start();
+            global.game.statecontroller.start();
         });
 
         this.levelSelectButton = createLevelSelectButton();

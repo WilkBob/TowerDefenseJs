@@ -25,7 +25,7 @@ export class UI{
         this.pauseButton.style.display = 'none';
         document.body.appendChild(this.pauseButton);
         this.pauseButton.addEventListener('click', () => {
-            global.game.pause();
+            global.game.statecontroller.pause();
         });
 
         this.pauseMenu = new PauseMenu();

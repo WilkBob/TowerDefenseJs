@@ -8,7 +8,7 @@ export class PauseMenu{
 
         this.StartButton.addEventListener('click', () => {
             this.PauseMenu.style.display = 'none';
-            global.game.unpause();
+            global.game.statecontroller.unpause();
         });
 
         this.quitButton = createQuitButton();

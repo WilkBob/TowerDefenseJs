@@ -10,6 +10,9 @@ export class Player{
         this.score = playerDefinition.score;
         this.progress = playerDefinition.progress;
         //{wave: int, level: int, highscore: int}
+
+        console.log(this.progress);
+        console.log('player created');
         
     }
 

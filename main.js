@@ -64,7 +64,7 @@ global.canvas.addEventListener('mouseup', (e) => {
 });
 
 global.canvas.addEventListener('click', (e) => {
-  global.game.click(global.mouse.x, global.mouse.y);
+  global.game.statecontroller.click(global.mouse.x, global.mouse.y);
 });
 
 window.addEventListener('resize', resize);

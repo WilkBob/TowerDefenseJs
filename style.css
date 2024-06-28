@@ -154,6 +154,7 @@ height: fit-content;
 }
 
 #levelSelectScreen {
+  color: white; 
   display: none;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
@@ -173,16 +174,20 @@ height: fit-content;
 }
 
 #levelSelectScreen .backButton {
+  color: white;
   grid-column: span 4;
   padding: calc(10px * var(--canvas-factor));
   border: none;
   border-radius: 5px;
   background: var(--green);
-  color: white;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   max-height: calc(40px * var(--canvas-factor));
+}
+
+#levelSelectScreen .backButton:hover {
+  background: #1f7f1f;
 }
 
 .levelCard {
@@ -194,15 +199,36 @@ height: fit-content;
   font-size: calc(1.5rem * var(--canvas-factor));
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f95d;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+}
+
+.levelCard.locked {
+  filter: grayscale(100%);
+}
+
+.levelCard.locked::before {
+  content: '🔒';
+  font-size: calc(2rem * var(--canvas-factor));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .levelCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.levelCard.locked:hover {
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
 .levelCard p {

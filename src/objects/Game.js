@@ -2,6 +2,7 @@ import { global } from "../../main.js"
 import { UI } from "../UI/UI";
 import { Clickmask } from "./Clickmask";
 import { Enemy } from "./Enemy";
+import { GameStateController } from "./GameStateController.js";
 import { Player } from "./Player";
 import { Tower } from "./tower";
 import Splash from '/images/splash.png';
@@ -21,7 +22,9 @@ export class Game{
         this.player.load();
 
         this.level = global.levelDefinitions.level1;
+        console.log('about to make ui');
         this.ui = new UI();
+        console.log('ui made');
         this.background = new Image();
         this.background.src = Splash
         this.background.onload = () => {
@@ -32,7 +35,7 @@ export class Game{
         this.clickmask= new Clickmask(this.level.mask);
         
         this.selectedTower = null;
-
+        this.statecontroller = new GameStateController()
     }
 
     update(){
@@ -122,81 +125,7 @@ export class Game{
 
 
 
-    click(){
-        console.log('click');
-        if(this.paused){
-            return;
-        }
-        if(!this.selectedTower){
-            this.ui.messages.addMessage('No tower selected', 'Game');
-            return;
-        }
-        if(global.mouse.canPlace && this.loaded){
-            this.addTower(global.mouse.x, global.mouse.y, global.towerDefinitions[this.selectedTower]);
-        }else{
-            this.ui.messages.addMessage('Cannot place tower here', 'Game');
-        }
-    }
-
-    start(){
-        this.loadBackground(this.level.background);
-        this.ui.start();
-        this.paused = false;
-        this.ui.messages.addMessage('Game started', 'Game');
-      
-    }
-
-    pause(){
-        this.paused = true;
-        this.ui.pause();
-    }
-
-    unpause(){
-        this.paused = false;
-        this.ui.unpause();
-    }
-
-    quit(){
-        this.paused = true;
-        this.loaded = false;
-        this.ui.quit();
-        this.objects.towers.forEach(tower => {
-            clearInterval(tower.frameInterval);
-            clearInterval(tower.shootInterval);
-        });
-        this.objects = {
-            towers: [],
-            bullets: [],
-            enemies: [],
-            spritesheets: [],
-        }
-        this.player.save();
-        this.player.health = this.player.maxHealth;
-        this.player.money = this.player.startingMoney;
-        this.loadBackground(Splash);
-        this.ui.messages.addMessage('Game quit', 'Game');
-    }
-
-    gameOver(){
-        this.paused = true;
-        this.loaded = false;
-        this.ui.gameOver();
-        this.objects.towers.forEach(tower => {
-            clearInterval(tower.frameInterval);
-            clearInterval(tower.shootInterval);
-        });
-        this.objects = {
-            towers: [],
-            bullets: [],
-            enemies: [],
-            spritesheets: [],
-        }
-        this.player.save();
-        this.player.health = this.player.maxHealth;
-        this.player.money = this.player.startingMoney;
-        this.loadBackground(Splash);
-        this.ui.messages.addMessage('Game over', 'Game');
-    }
+    
 
 
 

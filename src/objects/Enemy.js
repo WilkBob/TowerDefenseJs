@@ -131,7 +131,7 @@ export class Enemy{
                 this.dead = true;
                 if(this.player.health <= 0){
                     global.game.ui.messages.addMessage('Player dead', 'game');
-                    global.game.gameOver();
+                    global.game.statecontroller.gameOver();
                     return;
                 }
                 global.game.objects.enemies = global.game.objects.enemies.filter(enemy => enemy !== this);

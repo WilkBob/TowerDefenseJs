@@ -28,7 +28,7 @@ export const createQuitButton = function() {
     quitButton.id = 'quitButton';
     quitButton.textContent = 'Quit Game';
     quitButton.addEventListener('click', () => {
-        global.game.quit();
+        global.game.statecontroller.quit();
     });
 
     return quitButton;
@@ -121,6 +121,7 @@ const createLevelCard = function(level) {
     // const highest = global.game.player.progress.level //starts at 1
     // const unlocked = index <= highest ? true : false;
     levelCard.classList.add('levelCard');
+    levelCard.style.backgroundImage = `url(${level.background})`;
     // !unlocked && levelCard.classList.add('locked');
     levelCard.id = level.name;
     const levelName = document.createElement('p');
