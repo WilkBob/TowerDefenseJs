@@ -13,7 +13,7 @@ export const enemyDefinitions = {
         reward: 40,
         size: 128,
         spritesheet: {
-            src: '@images/sprites/zombie.png',
+            src: zombie,
             image: zombie,
             size: 128,
             frames: 24,
@@ -22,7 +22,7 @@ export const enemyDefinitions = {
 
         animations: {
             death: {
-                src: '@images/sprites/zombieDeath.png',
+                src: zombieDeath,
                 image: zombieDeath,
                 size: 128,
                 frames: 24,
@@ -48,7 +48,7 @@ export const enemyDefinitions = {
         reward: 100,
         size: 128,
         spritesheet: {
-            src: '@images/sprites/zombie.png',
+            src: zombie,
             image: zombie,
             size: 256,
             frames: 24,
@@ -57,7 +57,7 @@ export const enemyDefinitions = {
 
         animations: {
             death: {
-                src: '@images/sprites/zombieDeath.png',
+                src: zombieDeath,
                 image: zombieDeath,
                 size: 128,
                 frames: 24,
@@ -84,7 +84,7 @@ export const enemyDefinitions = {
         reward: 150,
         size: 128,
         spritesheet: {
-            src: '@images/sprites/roller.png',
+            src: roller,
             image: roller,
             size: 128,
             frames: 24,
@@ -93,7 +93,7 @@ export const enemyDefinitions = {
 
         animations: {
             death: {
-                src: '@images/sprites/rollerDeath.png',
+                src: rollerDeath,
                 image: rollerDeath,
                 size: 128,
                 frames: 24,

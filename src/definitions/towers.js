@@ -13,7 +13,7 @@ export const towerDefinitions = {
         "range": .24,
         "size": 128,
         "spritesheet": {
-            "src": "@images/sprites/tower.png",
+            "src": tower,
             "image": tower,
             "size": 128,
             "frames": 24,
@@ -30,7 +30,7 @@ export const towerDefinitions = {
         "range": .3,
         "size": 128,
         "spritesheet": {
-            "src": "@images/sprites/tower2.png",
+            "src": tower2,
             "image": tower2,
             "size": 128,
             "frames": 24,
