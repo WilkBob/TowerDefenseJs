@@ -22,7 +22,7 @@ export class Game{
         this.level = global.levelDefinitions.level1;
 
         this.background = new Image();
-        this.background.src = '/images/splash.png'
+        this.background.src = '@images/splash.png'
         this.background.onload = () => {
             this.loaded = true;
             this.addMessage('Level loaded', 'Game');
@@ -179,7 +179,7 @@ export class Game{
         this.player.save();
         this.player.health = this.player.maxHealth;
         this.player.money = this.player.startingMoney;
-        this.loadBackground('/images/splash.png');
+        this.loadBackground('@images/splash.png');
         this.addMessage('Game over', 'Game');
     }
 
