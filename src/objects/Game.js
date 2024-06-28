@@ -21,17 +21,16 @@ export class Game{
         this.player.load();
 
         this.level = global.levelDefinitions.level1;
-
+        this.ui = new UI();
         this.background = new Image();
         this.background.src = Splash
         this.background.onload = () => {
             this.loaded = true;
-            this.addMessage('Level loaded', 'Game');
 
         }
 
         this.clickmask= new Clickmask(this.level.mask);
-        this.ui = new UI();
+        
         this.selectedTower = null;
 
     }
@@ -100,17 +99,19 @@ export class Game{
         }
     }
 
+  
+
     
 
     addTower(x, y, definition){
         if(this.player.money < definition.cost){
-            this.addMessage('Not enough money', 'Player');
+            this.ui.messages.addMessage('Not enough money', 'Player');
             return;
         }
         const tower = new Tower({x: x, y: y}, definition, this);
         this.objects.towers.push(tower);
         this.player.removeMoney(definition.cost);
-        this.addMessage(`Placed ${definition.name}`, `${this.player.name}`);
+        this.ui.messages.addMessage(`Placed ${definition.name}`, `${this.player.name}`);
     }
 
     addEnemy(path, key){
@@ -118,14 +119,6 @@ export class Game{
         this.objects.enemies.push(enemy);
     }
 
-    addMessage(message, sender){
-        const time = new Date();
-
-        this.ui.state.messages.push(`${
-            time.getHours().toString().padStart(2, '0')}:${
-            time.getMinutes().toString().padStart(2, '0')}:${
-            time.getSeconds().toString().padStart(2, '0')} - ${sender}: ${message}`);
-    }
 
 
 
@@ -135,13 +128,13 @@ export class Game{
             return;
         }
         if(!this.selectedTower){
-            this.addMessage('No tower selected', 'Game');
+            this.ui.messages.addMessage('No tower selected', 'Game');
             return;
         }
         if(global.mouse.canPlace && this.loaded){
             this.addTower(global.mouse.x, global.mouse.y, global.towerDefinitions[this.selectedTower]);
         }else{
-            this.addMessage('Cannot place tower here', 'Game');
+            this.ui.messages.addMessage('Cannot place tower here', 'Game');
         }
     }
 
@@ -149,7 +142,7 @@ export class Game{
         this.loadBackground(this.level.background);
         this.ui.start();
         this.paused = false;
-        this.addMessage('Game started', 'Game');
+        this.ui.messages.addMessage('Game started', 'Game');
       
     }
 
@@ -161,6 +154,27 @@ export class Game{
     unpause(){
         this.paused = false;
         this.ui.unpause();
+    }
+
+    quit(){
+        this.paused = true;
+        this.loaded = false;
+        this.ui.quit();
+        this.objects.towers.forEach(tower => {
+            clearInterval(tower.frameInterval);
+            clearInterval(tower.shootInterval);
+        });
+        this.objects = {
+            towers: [],
+            bullets: [],
+            enemies: [],
+            spritesheets: [],
+        }
+        this.player.save();
+        this.player.health = this.player.maxHealth;
+        this.player.money = this.player.startingMoney;
+        this.loadBackground(Splash);
+        this.ui.messages.addMessage('Game quit', 'Game');
     }
 
     gameOver(){
@@ -181,7 +195,7 @@ export class Game{
         this.player.health = this.player.maxHealth;
         this.player.money = this.player.startingMoney;
         this.loadBackground(Splash);
-        this.addMessage('Game over', 'Game');
+        this.ui.messages.addMessage('Game over', 'Game');
     }
 
 

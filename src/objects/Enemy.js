@@ -42,7 +42,7 @@ export class Enemy{
         
 
 
-        global.game.addMessage(this.currentMessage, this.definition.name);
+        global.game.ui.messages.addMessage(this.currentMessage, this.definition.name);
     }
 
     drawHealthBar(){
@@ -127,10 +127,10 @@ export class Enemy{
             if(this.pathIndex >= this.path.length){
                 this.currentMessage = this.messages.hitTower[Math.floor(Math.random() * this.messages.hitTower.length)];
                 this.player.health -= this.definition.damage
-                global.game.addMessage(this.currentMessage, this.definition.name);
+                global.game.ui.messages.addMessage(this.currentMessage, this.definition.name);
                 this.dead = true;
                 if(this.player.health <= 0){
-                    global.game.addMessage('Player dead', 'game');
+                    global.game.ui.messages.addMessage('Player dead', 'game');
                     global.game.gameOver();
                     return;
                 }

@@ -89,11 +89,11 @@ let path = 1;
 window.addEventListener('keydown', (e) => {
   if(e.key === '1'){
     path = 1;
-    global.game.addMessage(`Path ${path}`, 'Game');
+    global.game.ui.messages.addMessage(`Path ${path}`, 'Game');
   }
   if(e.key === '2'){
     path = 2;
-    global.game.addMessage(`Path ${path}`, 'Game');
+    global.game.ui.messages.addMessage(`Path ${path}`, 'Game');
   }
   if(e.key === 'm'){
     global.game.player.addMoney(100);

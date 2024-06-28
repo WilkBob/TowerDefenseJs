@@ -27,7 +27,7 @@ export class Bullet {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < this.speed) {
-            global.game.addMessage(this.target.definition.messages.hit[Math.floor(Math.random() * this.target.definition.messages.hit.length)], this.target.definition.name);
+            global.game.ui.messages.addMessage(this.target.definition.messages.hit[Math.floor(Math.random() * this.target.definition.messages.hit.length)], this.target.definition.name);
             this.target.health -= this.damage;
             this.toRemove = true;
         } else {

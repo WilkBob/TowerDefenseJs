@@ -23,6 +23,18 @@ export const createStartButton = function() {
     return startButton;
 }
 
+export const createQuitButton = function() {
+    const quitButton = document.createElement('button');
+    quitButton.id = 'quitButton';
+    quitButton.textContent = 'Quit Game';
+    quitButton.addEventListener('click', () => {
+        global.game.quit();
+    });
+
+    return quitButton;
+
+}
+
 export const createLevelSelectButton = function() {
     const levelSelectButton = document.createElement('button');
     levelSelectButton.id = 'levelSelectButton';
@@ -97,6 +109,7 @@ export const createLevelSelectScreen = function() {
     Object.values(global.levelDefinitions).forEach(level => {
         const levelCard = createLevelCard(level);
         levelSelectScreen.appendChild(levelCard);
+
     });
     
     return levelSelectScreen;
@@ -105,7 +118,10 @@ export const createLevelSelectScreen = function() {
 
 const createLevelCard = function(level) {
     const levelCard = document.createElement('div');
+    // const highest = global.game.player.progress.level //starts at 1
+    // const unlocked = index <= highest ? true : false;
     levelCard.classList.add('levelCard');
+    // !unlocked && levelCard.classList.add('locked');
     levelCard.id = level.name;
     const levelName = document.createElement('p');
     levelName.textContent = level.name;

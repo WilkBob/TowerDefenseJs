@@ -3,15 +3,29 @@ import { global } from '../../main.js';
 import { borderRadiusRect } from './borderRadiusRect';
 
 export class Messages{
-    constructor(messages){
-        this.messages = messages;
+    constructor(){
+        this.messages = [];
     }
 
     update(){
         if(this.messages.length > 5){
             this.messages.shift();
         }
+
+        if(this.messages.length > 10){
+            this.messages.splice(0, 5);
+        }
     }
+
+    addMessage(message, sender){
+        const time = new Date();
+
+        this.messages.push(`${
+            time.getHours().toString().padStart(2, '0')}:${
+            time.getMinutes().toString().padStart(2, '0')}:${
+            time.getSeconds().toString().padStart(2, '0')} - ${sender}: ${message}`);
+    }
+
 draw(){
     global.ctx.fillStyle = colors.background;
     global.ctx.font = `${20 * global.fac}px system-ui, -apple-system, Roboto, sans-serif`;

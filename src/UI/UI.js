@@ -13,7 +13,6 @@ export class UI{
         this.state = {
             health: 0,
             money: 200,
-            messages:[]
         }
 
         this.view = {
@@ -75,6 +74,12 @@ export class UI{
         this.pauseButton.style.display = 'block';
         this.pauseMenu.hide();
         this.towerSelector.style.display = 'flex';
+    }
+
+    quit(){
+        this.levelSelectScreen.hide();
+        this.pauseMenu.hide();
+        this.startMenu.show();
     }
 
     gameOver(){

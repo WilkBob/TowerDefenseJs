@@ -1,25 +1,28 @@
-import { createStartMenu, createStartButton, createLevelSelectButton } from "./utils";
+import { createStartMenu, createStartButton, createLevelSelectButton, createQuitButton } from "./utils";
 import { global } from "../../main.js";
 export class PauseMenu{
     constructor(){
-        this.StartMenu = createStartMenu();
+        this.PauseMenu = createStartMenu();
         this.StartButton = createStartButton();
-        this.StartMenu.appendChild(this.StartButton);
+        this.PauseMenu.appendChild(this.StartButton);
 
         this.StartButton.addEventListener('click', () => {
-            this.StartMenu.style.display = 'none';
+            this.PauseMenu.style.display = 'none';
             global.game.unpause();
         });
 
-        document.body.appendChild(this.StartMenu);
-        this.StartMenu.style.display = 'none';
+        this.quitButton = createQuitButton();
+        this.PauseMenu.appendChild(this.quitButton);
+
+        document.body.appendChild(this.PauseMenu);
+        this.PauseMenu.style.display = 'none';
     }
 
     hide(){
-        this.StartMenu.style.display = 'none';
+        this.PauseMenu.style.display = 'none';
     }
 
     show(){
-        this.StartMenu.style.display = 'flex';
+        this.PauseMenu.style.display = 'flex';
     }
 }
