@@ -7,7 +7,7 @@ export default defineConfig({
     
 resolve: {
     alias: {
-      '@images': path.resolve(__dirname, '@images')
+      '@images': path.resolve(__dirname, '/images')
     },
     },
 });
