@@ -1,9 +1,12 @@
 import level1 from '/images/maps/level1.png';
 import mask1 from '/images/maps/level1mask.png';
+import level2 from '/images/maps/level2.png';
+import mask2 from '/images/maps/level2mask.png';
 
 export  const levelDefinitions = {
     level1: {
         name: 'Level 1',
+        level: 1,
         reward: 1000,
         background: level1,
         mask: mask1,
@@ -100,9 +103,10 @@ export  const levelDefinitions = {
 
     level2: {
         name: 'Level 2',
+        level: 2,
         reward: 1000,
-        background: level1,
-        mask: mask1,
+        background: level2,
+        mask: mask2,
         path1: 
             [
                 {

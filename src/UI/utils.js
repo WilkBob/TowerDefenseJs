@@ -52,7 +52,7 @@ const createTitle = function() {
 export const createPauseButton = function() {
     const pauseButton = document.createElement('button');
     pauseButton.id = 'pauseButton';
-    pauseButton.textContent = 'Pause Game';
+    pauseButton.textContent = '| |';
     return pauseButton;
 }
 
@@ -73,9 +73,6 @@ export const createTowerSelector = function() {
         towerCard.appendChild(towerImg);
 
         // Create and append text to card
-        const towerName = document.createElement('p');
-        towerName.textContent = tower.name;
-        towerCard.appendChild(towerName);
 
         const towerCost = document.createElement('p');
         towerCost.textContent = `$${tower.cost}`;
@@ -128,7 +125,12 @@ const createLevelCard = function(level) {
     levelName.textContent = level.name;
     levelCard.appendChild(levelName);
     levelCard.addEventListener('click', () => {
-        global.game.loadLevel(level.key);
+        if (global.game.player.progress.level < level.level) {
+            return;
+        }
+        global.game.level = level;
+        global.game.statecontroller.start();
+        global.game.ui.levelSelectScreen.hide();
     });
     return levelCard;
 }

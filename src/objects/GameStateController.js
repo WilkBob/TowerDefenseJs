@@ -6,6 +6,7 @@ export class GameStateController{
     }
     click(){
         console.log('click');
+    
         if(global.game.paused){
             return;
         }
@@ -21,8 +22,9 @@ export class GameStateController{
     }
 
     start(){
-        global.game.loadBackground(global.game.level.background);
+        global.game.levelcontroller.loadLevel(global.game.level);
         global.game.ui.start();
+
         global.game.paused = false;
         global.game.ui.messages.addMessage('Game started', 'Game');
       
@@ -62,7 +64,7 @@ export class GameStateController{
     gameOver(){
         global.game.paused = true;
         global.game.loaded = false;
-        global.game.ui.statecontroller.gameOver();
+        global.game.ui.gameOver();
         global.game.objects.towers.forEach(tower => {
             clearInterval(tower.frameInterval);
             clearInterval(tower.shootInterval);

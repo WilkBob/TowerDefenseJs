@@ -3,6 +3,7 @@ import { UI } from "../UI/UI";
 import { Clickmask } from "./Clickmask";
 import { Enemy } from "./Enemy";
 import { GameStateController } from "./GameStateController.js";
+import { LevelController } from "./LevelController";
 import { Player } from "./Player";
 import { Tower } from "./tower";
 import Splash from '/images/splash.png';
@@ -16,12 +17,11 @@ export class Game{
         }
         this.paused = true;
         this.loaded = false;
-
+        this.level = global.levelDefinitions[`level1`];
         
         this.player = new Player(global.playerDefinition);
         this.player.load();
-
-        this.level = global.levelDefinitions.level1;
+        this.levelcontroller = new LevelController(this.player,  this.level);
         console.log('about to make ui');
         this.ui = new UI();
         console.log('ui made');
@@ -32,10 +32,13 @@ export class Game{
 
         }
 
-        this.clickmask= new Clickmask(this.level.mask);
+        
         
         this.selectedTower = null;
         this.statecontroller = new GameStateController()
+        this.levelcontroller.init();
+        console.log(this.level, this.levelcontroller.level, this.level === this.levelcontroller.level);
+        this.clickmask= new Clickmask(this.level.mask);
     }
 
     update(){

@@ -38,6 +38,7 @@ export class Player{
             }
             this.score = def.score;
             this.progress = def.progress;
+
         }
 
         takeDamage(damage){

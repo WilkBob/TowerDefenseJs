@@ -33,4 +33,12 @@ export class Clickmask {
         // Update imageData after resizing
         this.imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     }
+
+    newImage(image) {
+        this.image.src = image;
+        this.image.onload = () => {
+            this.ctx.drawImage(this.image, 0, 0, this.canvas.width, this.canvas.height);
+            this.imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        };
+    }
 }
