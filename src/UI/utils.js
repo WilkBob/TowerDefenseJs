@@ -16,10 +16,10 @@ export const createStartMenu = function() {
 return startMenu;
 }
 
-export const createStartButton = function() {
+export const createStartButton = function(text) {
     const startButton = document.createElement('button');
     startButton.id = 'startButton';
-    startButton.textContent = 'Start Game';
+    startButton.textContent = text;
     return startButton;
 }
 
