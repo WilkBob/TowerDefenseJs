@@ -1,7 +1,7 @@
-import tower from "/images/sprites/tower.png";
-import towerIcon from "/images/sprites/tower_icon.png";
-import tower2 from "/images/sprites/tower2.png";
-import tower2Icon from "/images/sprites/tower2_icon.png";
+import tower from "@images/sprites/tower.png";
+import towerIcon from "@images/sprites/tower_icon.png";
+import tower2 from "@images/sprites/tower2.png";
+import tower2Icon from "@images/sprites/tower2_icon.png";
 
 export const towerDefinitions = {
     "shooter": {

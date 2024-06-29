@@ -1,5 +1,5 @@
 import { global } from "../../main";
-import Splash from '/images/splash.png';
+import Splash from '@images/splash.png';
 export class GameStateController{
     constructor(){
 

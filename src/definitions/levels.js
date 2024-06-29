@@ -1,7 +1,7 @@
-import level1 from '/images/maps/level1.png';
-import mask1 from '/images/maps/level1mask.png';
-import level2 from '/images/maps/level2.png';
-import mask2 from '/images/maps/level2mask.png';
+import level1 from '@images/maps/level1.png';
+import mask1 from '@images/maps/level1mask.png';
+import level2 from '@images/maps/level2.png';
+import mask2 from '@images/maps/level2mask.png';
 
 export  const levelDefinitions = {
     level1: {
