@@ -3,7 +3,7 @@ import { global } from "../../main.js";
 export class PauseMenu{
     constructor(){
         this.PauseMenu = createStartMenu();
-        this.StartButton = createStartButton('Pause');
+        this.StartButton = createStartButton('Resume Game');
         this.PauseMenu.appendChild(this.StartButton);
 
         this.StartButton.addEventListener('click', () => {
