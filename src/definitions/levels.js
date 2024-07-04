@@ -6,6 +6,7 @@ import mask2 from '/images/maps/level2mask.png';
 export  const levelDefinitions = {
     level1: {
         name: 'Level 1',
+        key: 'level1',
         level: 1,
         reward: 1000,
         background: level1,
@@ -79,30 +80,124 @@ export  const levelDefinitions = {
 
         waves: [
             {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
+                wave: 1,
+                groups: [
+                    {
+                        type: 'zombie',
+                        path: 1,
+                        startDelay: 1000,
+                        interval: 1000,
+                        count: 10,
+                    }
+                ]
 
-                path2: null,
+            },
+            {
+                wave: 2,
+                groups: [
+                    {
+                        type: 'zombie',
+                        path: 2,
+                        startDelay: 1000,
+                        interval: 1000,
+                        count: 10,
+                    }
+                ]
+            },
+            {
+                wave: 3,
+                groups: [
+                    {
+                        type: 'bigZombie',
+                        path:1,
+                        startDelay: 1000,
+                        interval: 0,
+                        count: 1,
+                    },
+                    {
+                        type: 'bigZombie',
+                        path:2,
+                        startDelay: 1000,
+                        interval: 0,
+                        count: 1,
+                    },
+                ]
             },
 
             {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
-
-                path2: {
-                    enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                    delay: 1000,
+                wave: 4,
+                groups: [
+                    {
+                        type: 'bigZombie',
+                        path: 2,
+                        startDelay: 1000,
+                        interval: 0,
+                        count: 1,
                     },
+                    {
+                        type: 'zombie',
+                        path: 2,
+                        startDelay: 3000,
+                        interval: 1000,
+                        count: 10,
+                    },
+                    {
+                        type: 'bigZombie',
+                        path: 1,
+                        startDelay: 3000,
+                        interval: 0,
+                        count: 1,
+                    },
+                    {
+                        type: 'zombie',
+                        path: 1,
+                        startDelay: 3000,
+                        interval: 1000,
+                        count: 10,
+                    },
+                ]
+
             },
+                
+                {
+                    wave: 5,
+                    groups: [
+                        {
+                            type: 'bigZombie',
+                            path: 2,
+                            startDelay: 1000,
+                            interval: 1000,
+                            count: 2,
+                        },
+                        {
+                            type: 'zombie',
+                            path: 2,
+                            startDelay: 3000,
+                            interval: 1000,
+                            count: 10,
+                        },
+                        {
+                            type: 'roller',
+                            path: 1,
+                            startDelay: 6000,
+                            interval: 1000,
+                            count: 1,
+                        },
+                        {
+                            type: 'zombie',
+                            path: 2,
+                            startDelay: 6000,
+                            interval: 800,
+                            count: 10,
+                        },
+                    ]
+                },
         ],
     },
 
     level2: {
         name: 'Level 2',
+        key: 'level2',
         level: 2,
         reward: 1000,
         background: level2,
@@ -136,20 +231,87 @@ export  const levelDefinitions = {
             ],
         
 
-        waves: [
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
+            waves: [
+                {
+                    wave: 1,
+                    groups: [
+                        {
+                            type: 'zombie',
+                            path: 1,
+                            startDelay: 1000,
+                            interval: 1000,
+                            count: 10,
+                        }
+                    ]
+    
                 },
-            },
-
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
+                {
+                    wave: 2,
+                    groups: [
+                        {
+                            type: 'zombie',
+                            path: 1,
+                            startDelay: 1000,
+                            interval: 1000,
+                            count: 10,
+                        }
+                    ]
                 },
-            }
-        ]
+                {
+                    wave: 3,
+                    groups: [
+                        {
+                            type: 'bigZombie',
+                            path:1,
+                            startDelay: 1000,
+                            interval: 0,
+                            count: 1,
+                        },
+                        {
+                            type: 'bigZombie',
+                            path:1,
+                            startDelay: 1000,
+                            interval: 0,
+                            count: 1,
+                        },
+                    ]
+                },
+    
+                {
+                    wave: 4,
+                    groups: [
+                        {
+                            type: 'bigZombie',
+                            path: 1,
+                            startDelay: 1000,
+                            interval: 0,
+                            count: 1,
+                        },
+                        {
+                            type: 'zombie',
+                            path: 1,
+                            startDelay: 11000,
+                            interval: 1000,
+                            count: 10,
+                        },
+                        {
+                            type: 'bigZombie',
+                            path: 1,
+                            startDelay: 1000,
+                            interval: 0,
+                            count: 1,
+                        },
+                        {
+                            type: 'zombie',
+                            path: 1,
+                            startDelay: 11000,
+                            interval: 1000,
+                            count: 10,
+                        },
+                    ]
+    
+                }
+    
+            ],
     }
 }

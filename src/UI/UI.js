@@ -156,9 +156,10 @@ drawFps(){
             this.drawFps();
         
         if(this.view.hud){
-            
+            global.ctx.fillText(`Wave: ${global.game.levelcontroller.waveNumber - 1 || 1}`, 10 * global.fac, 80 * global.fac);
             global.ctx.fillText(`$${this.state.money}`, 10 * global.fac, 60 * global.fac);
             this.healthBar.draw(this.state.health);
+
     }
     if(this.view.messages){
         this.messages.draw();

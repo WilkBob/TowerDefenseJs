@@ -3,6 +3,8 @@ import zombieDeath from '/images/sprites/zombieDeath.png';
 import roller from '/images/sprites/roller.png';
 import rollerDeath from '/images/sprites/rollerDeath.png';
 
+
+
 export const enemyDefinitions = {
     zombie: {
         name: 'Zombie',

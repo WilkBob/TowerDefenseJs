@@ -85,27 +85,35 @@ function resize(){
 }
 
 
-let path = 1;
 window.addEventListener('keydown', (e) => {
   if(e.key === '1'){
-    path = 1;
-    global.game.ui.messages.addMessage(`Path ${path}`, 'Game');
-  }
+    global.game.selectedTower = 'shooter';
+    const towerCard = document.getElementById('shooter');
+    document.querySelectorAll('.towerCard').forEach(card => card.classList.remove('active'));
+    towerCard.classList.add('active');
+
+  } 
+  
   if(e.key === '2'){
-    path = 2;
-    global.game.ui.messages.addMessage(`Path ${path}`, 'Game');
+    global.game.selectedTower = 'sprayer';
+    const towerCard = document.getElementById('sprayer');
+    document.querySelectorAll('.towerCard').forEach(card => card.classList.remove('active'));
+    towerCard.classList.add('active');
   }
+
   if(e.key === 'm'){
     global.game.player.addMoney(100);
   }
-  if(e.key === 'l'){
-    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'zombie');
+  if(e.key === 'h'){
+    global.game.player.addHealth(100);
   }
-  if(e.key === 'k'){
-    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'bigZombie');
+
+  if(e.key === 's'){
+    global.game.levelcontroller.spawnWave();
   }
-  if(e.key === 'j'){
-    global.game.addEnemy(global.levelDefinitions.level1[`path${path}`], 'roller');
+
+  if(e.key === 'escape' && global.game.paused === false && global.game.loaded){
+    global.game.statecontroller.pause();
   }
 });
 

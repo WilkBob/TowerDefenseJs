@@ -41,6 +41,12 @@ export class Player{
 
         }
 
+        reset(){
+            this.health = this.maxHealth;
+            this.money = this.startingMoney;
+            this.score = 0;
+        }
+
         takeDamage(damage){
             this.health -= damage;
             if(this.health <= 0){

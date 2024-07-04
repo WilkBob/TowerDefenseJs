@@ -3,7 +3,7 @@
   --green: #299c29;
   --sandy: #eed89d;
   --canvas-size: 100vh;
- --canvas-factor: 0.8;
+ --canvas-fac: 0.8;
 }
 
 html, body{
@@ -126,11 +126,11 @@ box-shadow: 0 0 200px rgba(0, 0, 0, 0.411), 0 0 10px rgba(7, 7, 7, 0.726);
   max-width: 50%;
   color: #fff;
   display: flex;
- gap: calc(10px * var(--canvas-factor));
+ gap: calc(10px * var(--canvas-fac));
   align-items: center;
    /* Adjust based on your design */
 height: fit-content;
-  margin: calc(10px * var(--canvas-factor));
+  margin: calc(10px * var(--canvas-fac));
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f95d; 
@@ -146,7 +146,7 @@ height: fit-content;
 
 .towerCard p{
   margin: 0;
-  padding: calc(8px * var(--canvas-factor));
+  padding: calc(8px * var(--canvas-fac));
   width: 100%;
   text-align: center;
   border-radius: 8px 8px 0 0;
@@ -154,8 +154,8 @@ height: fit-content;
 }
 
 .towerIcon {
-  width: calc(50px * var(--canvas-factor)); /* Adjust based on your design */
-  height:calc(50px * var(--canvas-factor)); /* Adjust to maintain aspect ratio */
+  width: calc(50px * var(--canvas-fac)); /* Adjust based on your design */
+  height:calc(50px * var(--canvas-fac)); /* Adjust to maintain aspect ratio */
   object-fit: contain; /* Keeps the image aspect ratio */
 }
 
@@ -165,10 +165,10 @@ height: fit-content;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   align-content: start;
-  gap: calc(10px * var(--canvas-factor));
+  gap: calc(10px * var(--canvas-fac));
   width: var(--canvas-size);
   height: var(--canvas-size);
-  padding: calc(10px * var(--canvas-factor));
+  padding: calc(10px * var(--canvas-fac));
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
@@ -182,14 +182,14 @@ height: fit-content;
 #levelSelectScreen .backButton {
   color: white;
   grid-column: span 4;
-  padding: calc(10px * var(--canvas-factor));
+  padding: calc(10px * var(--canvas-fac));
   border: none;
   border-radius: 5px;
   background: var(--green);
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  max-height: calc(40px * var(--canvas-factor));
+  max-height: calc(40px * var(--canvas-fac));
 }
 
 #levelSelectScreen .backButton:hover {
@@ -202,8 +202,8 @@ height: fit-content;
   align-items: center;
   justify-content: center;
 aspect-ratio: 1/1;
-  padding: calc(10px * var(--canvas-factor));
-  font-size: calc(1.5rem * var(--canvas-factor));
+  padding: calc(10px * var(--canvas-fac));
+  font-size: calc(1.5rem * var(--canvas-fac));
   border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
@@ -220,7 +220,7 @@ aspect-ratio: 1/1;
 
 .levelCard.locked::before {
   content: '🔒';
-  font-size: calc(2rem * var(--canvas-factor));
+  font-size: calc(2rem * var(--canvas-fac));
   position: absolute;
   top: 50%;
   left: 50%;

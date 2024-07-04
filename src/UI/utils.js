@@ -65,6 +65,7 @@ export const createTowerSelector = function() {
         // Create card container
         const towerCard = document.createElement('div');
         towerCard.classList.add('towerCard');
+        towerCard.id = tower.key;
 
         // Create and append image to card
         const towerImg = document.createElement('img');
@@ -80,7 +81,7 @@ export const createTowerSelector = function() {
 
 
         // Set card id
-        towerCard.id = tower.name;
+        towerCard.id = tower.key;
 
         // Add click event listener to card
         towerCard.addEventListener('click', () => {
@@ -105,6 +106,7 @@ export const createLevelSelectScreen = function() {
     levelSelectScreen.appendChild(backButton);
     Object.values(global.levelDefinitions).forEach(level => {
         const levelCard = createLevelCard(level);
+        levelCard.id = level.key;
         levelSelectScreen.appendChild(levelCard);
 
     });

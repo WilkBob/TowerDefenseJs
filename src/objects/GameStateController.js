@@ -41,6 +41,7 @@ export class GameStateController{
     }
 
     quit(){
+        global.game.levelcontroller.clearTimeouts();
         global.game.paused = true;
         global.game.loaded = false;
         global.game.ui.quit();
@@ -55,8 +56,7 @@ export class GameStateController{
             spritesheets: [],
         }
         global.game.player.save();
-        global.game.player.health = global.game.player.maxHealth;
-        global.game.player.money = global.game.player.startingMoney;
+        global.game.player.reset()
         global.game.loadBackground(Splash);
         global.game.ui.messages.addMessage('Game quit', 'Game');
     }
@@ -76,8 +76,7 @@ export class GameStateController{
             spritesheets: [],
         }
         global.game.player.save();
-        global.game.player.health = global.game.player.maxHealth;
-        global.game.player.money = global.game.player.startingMoney;
+        global.game.player.reset();
         global.game.loadBackground(Splash);
         global.game.ui.messages.addMessage('Game over', 'Game');
     }
