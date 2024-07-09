@@ -1,7 +1,8 @@
 # Tower Defense JS 🏰
 
 Tower Defense JS is a browser-based game developed using Vite and Vanilla JavaScript. This project is structured to provide a clear separation of concerns, making it easier to understand and extend.
-
+To play, go here: https://wilkbob.github.io/TowerDefenseJs/
+Currently, the level system is incomplete. Press l, k, and j to spawn enemies, and m to add money!
 ## Project Structure 📂
 
 The project is organized into several key directories:
