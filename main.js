@@ -1,18 +1,16 @@
-import '/style.css'
+import "/style.css";
 
+import { levelDefinitions } from "./src/definitions/levels";
+import { enemyDefinitions } from "./src/definitions/enemies";
+import { towerDefinitions } from "./src/definitions/towers";
+import { playerDefinition } from "./src/definitions/newplayer";
+import { Game } from "./src/objects/Game";
 
-import { levelDefinitions } from './src/definitions/levels';
-import { enemyDefinitions } from './src/definitions/enemies';
-import { towerDefinitions } from './src/definitions/towers';
-import { playerDefinition } from './src/definitions/newplayer';
-import { Game } from './src/objects/Game';
-
-
-const canvas = document.createElement('canvas');
+const canvas = document.createElement("canvas");
 
 document.body.appendChild(canvas);
 
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 
 export const global = {
   canvas,
@@ -22,123 +20,123 @@ export const global = {
   fac: null,
   fps: {
     frames: 0,
-    fps: null
+    fps: null,
   },
   mouse: {
-    x:null,
-    y:null,
-    radius:10,
-    color: 'rgba(255,255,255,0.5)',
+    x: null,
+    y: null,
+    radius: 10,
+    color: "rgba(255,255,255,0.5)",
     down: false,
-    canPlace: false
+    canPlace: false,
   },
   levelDefinitions,
   enemyDefinitions,
   towerDefinitions,
   playerDefinition,
-  messageHistory:[],
-  game:null,
-
-}
-
-
-
-
-
-
+  messageHistory: [],
+  game: null,
+};
 
 //EventListeners
-global.canvas.addEventListener('mousemove', (e) => {
+global.canvas.addEventListener("mousemove", (e) => {
   const rect = global.canvas.getBoundingClientRect();
   global.mouse.x = (e.clientX - rect.left) / global.size;
   global.mouse.y = (e.clientY - rect.top) / global.size;
 });
 
-global.canvas.addEventListener('mousedown', (e) => {
+global.canvas.addEventListener("mousedown", (e) => {
   global.mouse.down = true;
-}
-);
+});
 
-global.canvas.addEventListener('mouseup', (e) => {
+global.canvas.addEventListener("mouseup", (e) => {
   global.mouse.down = false;
 });
 
-global.canvas.addEventListener('click', (e) => {
+global.canvas.addEventListener("click", (e) => {
   global.game.statecontroller.click(global.mouse.x, global.mouse.y);
 });
 
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);
 //Resize canvas
-function resize(){
+function resize() {
   //biggest possible square given the window size
   const size = Math.min(window.innerWidth, window.innerHeight);
   global.canvas.width = size;
   global.canvas.height = size;
   global.size = size;
   global.fac = size / global.baseSize;
-  document.documentElement.style.setProperty('--canvas-fac', global.fac);
-  document.documentElement.style.setProperty('--canvas-size', global.size + 'px');
+  document.documentElement.style.setProperty("--canvas-fac", global.fac);
+  document.documentElement.style.setProperty(
+    "--canvas-size",
+    global.size + "px",
+  );
 
-  if(global.game){
+  if (global.game) {
     global.game.clickmask.resize();
   }
 }
 
-
-window.addEventListener('keydown', (e) => {
-  if(e.key === '1'){
-    global.game.selectedTower = 'shooter';
-    const towerCard = document.getElementById('shooter');
-    document.querySelectorAll('.towerCard').forEach(card => card.classList.remove('active'));
-    towerCard.classList.add('active');
-
-  } 
-  
-  if(e.key === '2'){
-    global.game.selectedTower = 'sprayer';
-    const towerCard = document.getElementById('sprayer');
-    document.querySelectorAll('.towerCard').forEach(card => card.classList.remove('active'));
-    towerCard.classList.add('active');
+window.addEventListener("keydown", (e) => {
+  if (e.key === "1") {
+    global.game.selectedTower = "shooter";
+    const towerCard = document.getElementById("shooter");
+    document
+      .querySelectorAll(".towerCard")
+      .forEach((card) => card.classList.remove("active"));
+    towerCard.classList.add("active");
   }
 
-  if(e.key === 'm'){
-    global.game.player.addMoney(100);
-  }
-  if(e.key === 'h'){
-    global.game.player.addHealth(100);
-  }
-
-  if(e.key === 's'){
-    global.game.levelcontroller.spawnWave();
+  if (e.key === "2") {
+    global.game.selectedTower = "sprayer";
+    const towerCard = document.getElementById("sprayer");
+    document
+      .querySelectorAll(".towerCard")
+      .forEach((card) => card.classList.remove("active"));
+    towerCard.classList.add("active");
   }
 
-  if(e.key === 'escape' && global.game.paused === false && global.game.loaded){
+  if (
+    e.key === "escape" &&
+    global.game.paused === false &&
+    global.game.loaded
+  ) {
     global.game.statecontroller.pause();
   }
 });
-
 
 setInterval(() => {
   global.fps.fps = global.fps.frames;
   global.fps.frames = 0;
 }, 1000);
 
+const fps = 60;
+const fpsInterval = 1000 / fps;
+let lastFrameTime = 0;
 
+function loop(timestamp) {
+  // Calculate the time difference since the last frame
+  const elapsed = timestamp - lastFrameTime;
 
-function startGame(){
-  resize();
-  global.game = new Game();
-  global.loop = loop();
+  // If enough time has passed, proceed with the game loop
+  if (elapsed > fpsInterval) {
+    lastFrameTime = timestamp - (elapsed % fpsInterval);
+
+    global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
+    global.game.draw();
+    global.game.update();
+    global.game.ui.drawMouse();
+
+    global.fps.frames++;
+  }
+
+  requestAnimationFrame(loop);
 }
 
-function loop(){
-  global.ctx.clearRect(0,0,global.canvas.width,global.canvas.height);
-  global.game.draw();
-  global.game.update();
-  global.game.ui.drawMouse();
-  
-  global.fps.frames++;
-  return requestAnimationFrame(loop);
+function startGame() {
+  resize();
+  global.game = new Game();
+  requestAnimationFrame(loop);
 }
 
 startGame();

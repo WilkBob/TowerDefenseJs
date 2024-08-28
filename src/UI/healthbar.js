@@ -1,15 +1,15 @@
 import { global } from "../../main.js";
-export class healthBar{
-    constructor(x, y, width, height, maxHealth){
-        this.ctx = global.ctx;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.maxHealth = maxHealth;
-    }
+export class healthBar {
+  constructor(x, y, width, height, maxHealth) {
+    this.ctx = global.ctx;
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.maxHealth = maxHealth;
+  }
 
-    draw(health){
+  draw(health) {
     // Scale dimensions and positions
     const scaledX = this.x * global.fac;
     const scaledY = this.y * global.fac;
@@ -22,13 +22,16 @@ export class healthBar{
 
     // Draw green health bar
     this.ctx.fillStyle = "green";
-    this.ctx.fillRect(scaledX, scaledY, scaledWidth * (health / this.maxHealth), scaledHeight);
+    this.ctx.fillRect(
+      scaledX,
+      scaledY,
+      scaledWidth * (health / this.maxHealth),
+      scaledHeight,
+    );
 
     // Draw outline
     this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 1 * global.fac; // Adjust lineWidth according to global.fac
     this.ctx.strokeRect(scaledX, scaledY, scaledWidth, scaledHeight);
-
-    
-}
+  }
 }

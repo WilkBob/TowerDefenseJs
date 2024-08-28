@@ -2,14 +2,14 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
+  base: "./",
+  server: {
     base: "./",
-    server: {
-      base: "./",
-    },
-    
-resolve: {
+  },
+
+  resolve: {
     alias: {
-      '@images': path.resolve(__dirname, '/images')
+      "@images": path.resolve(__dirname, "/images"),
     },
-    },
+  },
 });
