@@ -3,153 +3,312 @@ import mask1 from '@images/maps/level1mask.png';
 import level2 from '@images/maps/level2.png';
 import mask2 from '@images/maps/level2mask.png';
 
-export  const levelDefinitions = {
-    level1: {
-        name: 'Level 1',
-        level: 1,
-        reward: 1000,
-        background: level1,
-        mask: mask1,
-        path1: 
-            [
-                {
-                    "x": 0,
-                    "y": 0.4560546875
-                },
-                {
-                    "x": 0.3330078125,
-                    "y": 0.4541015625
-                },
-                {
-                    "x": 0.3271484375,
-                    "y": 0.1416015625
-                },
-                {
-                    "x": 0.7080078125,
-                    "y": 0.142578125
-                },
-                {
-                    "x": 0.7119140625,
-                    "y": 0.64453125
-                },
-                {
-                    "x": 1,
-                    "y": 0.64453125
-                }
-            ],
-        
-        path2: [
-            {
-                "x": 0.767578125,
-                "y": 0.0048828125
-            },
-            {
-                "x": 0.7705078125,
-                "y": 0.1435546875
-            },
-            {
-                "x": 0.33203125,
-                "y": 0.14453125
-            },
-            {
-                "x": 0.3359375,
-                "y": 0.453125
-            },
-            {
-                "x": 0.2353515625,
-                "y": 0.455078125
-            },
-            {
-                "x": 0.234375,
-                "y": 0.830078125
-            },
-            {
-                "x": 0.70703125,
-                "y": 0.8251953125
-            },
-            {
-                "x": 0.703125,
-                "y": 0.64453125
-            },
-            {
-                "x": 0.998046875,
-                "y": 0.6435546875
-            }
+
+export const levelDefinitions = {
+  level1: {
+    name: "Level 1",
+    key: "level1",
+    level: 1,
+    reward: 1000,
+    background: level1,
+    mask: mask1,
+    path1: [
+      {
+        x: 0,
+        y: 0.4560546875,
+      },
+      {
+        x: 0.3330078125,
+        y: 0.4541015625,
+      },
+      {
+        x: 0.3271484375,
+        y: 0.1416015625,
+      },
+      {
+        x: 0.7080078125,
+        y: 0.142578125,
+      },
+      {
+        x: 0.7119140625,
+        y: 0.64453125,
+      },
+      {
+        x: 1,
+        y: 0.64453125,
+      },
+    ],
+
+    path2: [
+      {
+        x: 0.767578125,
+        y: 0.0048828125,
+      },
+      {
+        x: 0.7705078125,
+        y: 0.1435546875,
+      },
+      {
+        x: 0.33203125,
+        y: 0.14453125,
+      },
+      {
+        x: 0.3359375,
+        y: 0.453125,
+      },
+      {
+        x: 0.2353515625,
+        y: 0.455078125,
+      },
+      {
+        x: 0.234375,
+        y: 0.830078125,
+      },
+      {
+        x: 0.70703125,
+        y: 0.8251953125,
+      },
+      {
+        x: 0.703125,
+        y: 0.64453125,
+      },
+      {
+        x: 0.998046875,
+        y: 0.6435546875,
+      },
+    ],
+
+    waves: [
+      {
+        wave: 1,
+        groups: [
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 1000,
+            count: 10,
+          },
         ],
-
-        waves: [
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
-
-                path2: null,
-            },
-
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
-
-                path2: {
-                    enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                    delay: 1000,
-                    },
-            },
+      },
+      {
+        wave: 2,
+        groups: [
+          {
+            type: "zombie",
+            path: 2,
+            startDelay: 1000,
+            interval: 1000,
+            count: 10,
+          },
         ],
-    },
+      },
+      {
+        wave: 3,
+        groups: [
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "bigZombie",
+            path: 2,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+        ],
+      },
 
-    level2: {
-        name: 'Level 2',
-        level: 2,
-        reward: 1000,
-        background: level2,
-        mask: mask2,
-        path1: 
-            [
-                {
-                    "x": 0,
-                    "y": 0.4560546875
-                },
-                {
-                    "x": 0.3330078125,
-                    "y": 0.4541015625
-                },
-                {
-                    "x": 0.3271484375,
-                    "y": 0.1416015625
-                },
-                {
-                    "x": 0.7080078125,
-                    "y": 0.142578125
-                },
-                {
-                    "x": 0.7119140625,
-                    "y": 0.64453125
-                },
-                {
-                    "x": 1,
-                    "y": 0.64453125
-                }
-            ],
-        
+      {
+        wave: 4,
+        groups: [
+          {
+            type: "bigZombie",
+            path: 2,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "zombie",
+            path: 2,
+            startDelay: 3000,
+            interval: 1000,
+            count: 10,
+          },
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 3000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 3000,
+            interval: 1000,
+            count: 10,
+          },
+        ],
+      },
 
-        waves: [
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
-            },
+      {
+        wave: 5,
+        groups: [
+          {
+            type: "bigZombie",
+            path: 2,
+            startDelay: 1000,
+            interval: 1000,
+            count: 2,
+          },
+          {
+            type: "zombie",
+            path: 2,
+            startDelay: 3000,
+            interval: 1000,
+            count: 10,
+          },
+          {
+            type: "roller",
+            path: 1,
+            startDelay: 6000,
+            interval: 1000,
+            count: 1,
+          },
+          {
+            type: "zombie",
+            path: 2,
+            startDelay: 6000,
+            interval: 800,
+            count: 10,
+          },
+        ],
+      },
+    ],
+  },
 
-            {
-                path1:{
-                enemies: ['zombie', 'zombie', 'zombie',' zombie',' zombie',' zombie', 'zombie'],
-                delay: 1000,
-                },
-            }
-        ]
-    }
-}
+  level2: {
+    name: "Level 2",
+    key: "level2",
+    level: 2,
+    reward: 1000,
+    background: level2,
+    mask: mask2,
+    path1: [
+      {
+        x: 0.0020161290322580645,
+        y: 0.5655241935483871,
+      },
+      {
+        x: 0.11189516129032258,
+        y: 0.5645161290322581,
+      },
+      {
+        x: 0.11391129032258064,
+        y: 0.33669354838709675,
+      },
+      {
+        x: 0.6875,
+        y: 0.3336693548387097,
+      },
+      {
+        x: 0.688508064516129,
+        y: 0.8568548387096774,
+      },
+      {
+        x: 0.3901209677419355,
+        y: 0.8528225806451613,
+      },
+      {
+        x: 0.3901209677419355,
+        y: 0.9979838709677419,
+      },
+    ],
+
+    waves: [
+      {
+        wave: 1,
+        groups: [
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 1000,
+            count: 10,
+          },
+        ],
+      },
+      {
+        wave: 2,
+        groups: [
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 1000,
+            count: 10,
+          },
+        ],
+      },
+      {
+        wave: 3,
+        groups: [
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+        ],
+      },
+
+      {
+        wave: 4,
+        groups: [
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 11000,
+            interval: 1000,
+            count: 10,
+          },
+          {
+            type: "bigZombie",
+            path: 1,
+            startDelay: 1000,
+            interval: 0,
+            count: 1,
+          },
+          {
+            type: "zombie",
+            path: 1,
+            startDelay: 11000,
+            interval: 1000,
+            count: 10,
+          },
+        ],
+      },
+    ],
+  },
+};
