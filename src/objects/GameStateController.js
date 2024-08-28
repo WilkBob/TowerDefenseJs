@@ -1,17 +1,8 @@
 import { global } from "../../main";
-import Splash from "/images/splash.png";
-import { LevelController } from "./LevelController";
-export class GameStateController {
-  constructor() {
-    this.points = [];
-  }
-  click() {
-    console.log("click");
-    this.points.push({ x: global.mouse.x, y: global.mouse.y });
-    console.log(this.points);
-    if (global.game.paused) {
-      return;
-    }
+
+import Splash from '@images/splash.png';
+export class GameStateController{
+    constructor(){}
     if (!global.game.selectedTower) {
       global.game.ui.messages.addMessage("No tower selected", "Game");
       return;

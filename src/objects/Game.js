@@ -6,7 +6,8 @@ import { GameStateController } from "./GameStateController.js";
 import { LevelController } from "./LevelController";
 import { Player } from "./Player";
 import { Tower } from "./tower";
-import Splash from "/images/splash.png";
+import Splash from '@images/splash.png';
+
 export class Game {
   constructor() {
     this.objects = {
@@ -39,6 +40,7 @@ export class Game {
   update() {
     if (!this.loaded) {
       return;
+
     }
     this.ui.update();
     this.ui.draw();
