@@ -1,8 +1,12 @@
 import { global } from "../../main";
+import Splash from "@images/splash.png";
 
-import Splash from '@images/splash.png';
-export class GameStateController{
-    constructor(){}
+export class GameStateController {
+  constructor() {}
+  click() {
+    if (global.game.paused) {
+      return;
+    }
     if (!global.game.selectedTower) {
       global.game.ui.messages.addMessage("No tower selected", "Game");
       return;
@@ -25,7 +29,7 @@ export class GameStateController{
     global.game.paused = false;
     global.game.ui.messages.addMessage("Starting in 5", "Game");
 
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       setTimeout(() => {
         global.game.ui.messages.addMessage(`${5 - i}`, "Game");
         if (i === 4) {
