@@ -15,7 +15,7 @@ export class GameStateController {
       global.game.addTower(
         global.mouse.x,
         global.mouse.y,
-        global.towerDefinitions[global.game.selectedTower],
+        global.towerDefinitions[global.game.selectedTower]
       );
     } else {
       global.game.ui.messages.addMessage("Cannot place tower here", "Game");
@@ -29,15 +29,7 @@ export class GameStateController {
     global.game.paused = false;
     global.game.ui.messages.addMessage("Starting in 5", "Game");
 
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => {
-        global.game.ui.messages.addMessage(`${5 - i}`, "Game");
-        if (i === 4) {
-          global.game.ui.messages.addMessage("Go!", "Game");
-          global.game.levelcontroller.spawnWave();
-        }
-      }, i * 1000);
-    }
+    this.startSpawning();
   }
 
   pause() {
@@ -104,5 +96,18 @@ export class GameStateController {
 
     global.game.player.save();
     global.game.player.reset();
+    this.start();
+  }
+
+  startSpawning() {
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        global.game.ui.messages.addMessage(`${5 - i}`, "Game");
+        if (i === 4) {
+          global.game.ui.messages.addMessage("Go!", "Game");
+          global.game.levelcontroller.spawnWave();
+        }
+      }, i * 1000);
+    }
   }
 }
